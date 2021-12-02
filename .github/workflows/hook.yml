@@ -1,0 +1,21 @@
+name: hook
+
+on:
+  schedule:
+    # every day at 5:00AM UTC (midnight EST) in December
+    - cron: "0 5 * 12 *"
+
+jobs:
+  hook:
+    runs-on: ubuntu-latest
+    name: Send slack webhook
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run webhook
+        run: SLACK_URL=${{ secrets.SLACK_URL }} python main.py
