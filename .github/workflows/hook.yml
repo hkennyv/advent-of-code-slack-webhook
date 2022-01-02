@@ -2,8 +2,9 @@ name: hook
 
 on:
   schedule:
-    # every day at 5:00AM UTC (midnight EST) in December
-    - cron: "0 5 * 12 *"
+    # At 05:00 on every day-of-month from 1 through 25 in December
+    # (5:00 AM UTC is midnight EST)
+    - cron: "0 5 1-25 12 *"
 
 jobs:
   hook:
